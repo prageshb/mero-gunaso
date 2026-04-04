@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Mero Gunaso Design System
+   A professional civic complaint management system
+   Colors: Deep teal primary, warm amber accents, clean slate neutrals
+*/
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    /* Popover surfaces */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    /* Primary: Deep Teal - Trust & Authority */
+    --primary: 180 45% 28%;
+    --primary-foreground: 0 0% 100%;
+    /* Secondary: Slate for subtle UI */
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 215 25% 25%;
+    /* Muted elements */
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 45%;
+    /* Accent: Warm Amber for CTAs */
+    --accent: 38 92% 50%;
+    --accent-foreground: 215 25% 12%;
+    /* Status colors */
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 215 25% 12%;
+    --info: 200 80% 50%;
+    --info-foreground: 0 0% 100%;
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    /* Borders & inputs */
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 180 45% 28%;
+    --radius: 0.625rem;
+    /* Sidebar */
+    --sidebar-background: 180 45% 22%;
+    --sidebar-foreground: 180 10% 95%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 215 25% 12%;
+    --sidebar-accent: 180 40% 30%;
+    --sidebar-accent-foreground: 180 10% 95%;
+    --sidebar-border: 180 35% 32%;
+    --sidebar-ring: 38 92% 50%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(180 45% 28%) 0%, hsl(180 50% 22%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 95% 45%) 100%);
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.08), 0 2px 4px -2px hsl(215 25% 15% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.05);
+    --shadow-card: 0 1px 3px hsl(215 25% 15% / 0.06), 0 1px 2px hsl(215 25% 15% / 0.04);
+  }
+  .dark {
+    --background: 215 25% 10%;
+    --foreground: 210 20% 95%;
+    --card: 215 25% 14%;
+    --card-foreground: 210 20% 95%;
+    --popover: 215 25% 14%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 175 50% 45%;
+    --primary-foreground: 215 25% 10%;
+    --secondary: 215 20% 20%;
+    --secondary-foreground: 210 20% 90%;
+    --muted: 215 20% 18%;
+    --muted-foreground: 215 15% 60%;
+    --accent: 38 85% 55%;
+    --accent-foreground: 215 25% 10%;
+    --success: 152 55% 45%;
+    --success-foreground: 215 25% 10%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 210 20% 95%;
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
+    --ring: 175 50% 45%;
+    --sidebar-background: 215 25% 8%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 38 85% 55%;
+    --sidebar-primary-foreground: 215 25% 10%;
+    --sidebar-accent: 215 20% 15%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 215 20% 18%;
+    --sidebar-ring: 38 85% 55%;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-foreground;
+  }
+}
+@layer components {
+  /* Status badge variants */
+  .status-not-opened {
+    @apply bg-muted text-muted-foreground;
+  }
+  .status-in-progress {
+    @apply bg-warning/15 text-warning;
+  }
+  .status-done {
+    @apply bg-success/15 text-success;
+  }
+  /* Hero section gradient */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  /* Card hover effect */
+  .card-interactive {
+    @apply transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+  .card-interactive:hover {
+    box-shadow: var(--shadow-md);
+    @apply -translate-y-0.5;
+  }
+  /* Sidebar navigation item */
+  .nav-item {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors;
+  }
+  .nav-item-active {
+    @apply bg-sidebar-accent text-sidebar-primary;
+  }
+}
+@layer utilities {
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-lg);
+  }
+}
