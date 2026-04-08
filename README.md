@@ -46,6 +46,71 @@ The backend is a secure, scalable RESTful API built on the Spring ecosystem, opt
 
 ---
 
+## 🗄️ Database Schema (MongoDB)
+
+Mero Gunaso uses MongoDB for its flexible document-based architecture. Below is the schema definition for the primary collections:
+
+### 1. `complaints`
+Stores all citizen reports and their lifecycle data.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `_id` | ObjectId | Internal unique identifier |
+| `ticketId` | String | Human-readable tracking ID (e.g., MG-1001) |
+| `title` | String | Short summary of the issue |
+| `description` | String | Detailed report content |
+| `name` | String | Submitter's name |
+| `email` | String | Submitter's contact email |
+| `phone` | String | Submitter's contact phone |
+| `departmentId`| String | Associated department ID |
+| `status` | Enum | `NOT_OPENED`, `IN_PROGRESS`, `DONE` |
+| `attachments` | List<String> | URLs/Paths to uploaded files |
+| `isPublic` | Boolean | Visibility toggle for the community feed |
+| `internalNotes`| List<Object> | Embedded `InternalNote` objects from admins |
+| `createdAt` | DateTime | Timestamp of submission |
+
+### 2. `admin_users`
+Stores administrative accounts for government authorities.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `_id` | ObjectId | Unique identifier |
+| `name` | String | Admin's full name |
+| `email` | String | Authentication email |
+| `password` | String | BCrypt hashed password |
+| `role` | Enum | `ROLE_ADMIN`, `ROLE_SUPER_ADMIN` |
+| `departmentId`| String | Assigned department (Null for Super Admins) |
+| `createdAt` | DateTime | Account creation timestamp |
+
+### 3. `departments`
+Government departments responsible for handling complaints.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `_id` | ObjectId | Unique identifier |
+| `name` | String | Department name (e.g., Infrastructure) |
+| `description` | String | Brief about the department's responsibilities |
+| `createdAt` | DateTime | Creation timestamp |
+
+### 4. `audit_logs`
+Tracks all administrative actions for accountability.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `_id` | ObjectId | Unique identifier |
+| `complaintId` | String | Linked complaint ID |
+| `action` | String | Type of action (e.g., Status Update) |
+| `oldStatus` | String | Status before the change |
+| `newStatus` | String | Status after the change |
+| `changedBy` | String | Admin name/ID who performed the action |
+| `details` | String | Descriptive logs of the event |
+| `timestamp` | DateTime | When the action occurred |
+
+### 5. `database_sequences`
+Used for atomic generation of human-readable Ticket IDs.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `_id` | String | Sequence name (e.g., "complaints_sequence") |
+| `seq` | Long | Current sequence value |
+
+---
+
 ## 🚀 Platform Features
 
 ### 👤 Citizen Experience
