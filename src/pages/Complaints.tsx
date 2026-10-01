@@ -91,9 +91,6 @@ const Complaints = () => {
           <div className="container px-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
               <div className="space-y-2">
-                <Badge variant="outline" className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary border-primary/20 bg-primary/5">
-                  Citizen Hub
-                </Badge>
                 <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Community Dashboard</h1>
                 <p className="text-muted-foreground text-sm max-w-2xl leading-relaxed">
                   Transparency in action. Monitor public grievances, track government responses, and see how your community is evolving.

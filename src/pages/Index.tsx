@@ -63,48 +63,50 @@ const Index = () => {
         </div>
 
         {/* --- HERO SECTION --- */}
-        <section className="relative pt-24 pb-20 lg:pt-40 lg:pb-32 px-6">
+        <section className="relative pt-24 pb-10 lg:pt-40 lg:pb-20 px-6">
           <div className="container max-w-6xl mx-auto">
             <div className="flex flex-col items-center text-center space-y-10">
               {/* Main Headline */}
               <div className="space-y-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-                <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.95]">
+                <h1 className="text-4xl lg:text-6xl font-black tracking-tighter leading-[0.95]">
                   Civil Action. <br />
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-indigo-600">Visible results.</span>
                 </h1>
-                <p className="text-base md:text-lg text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
+                <p className="text-sm md:text-base text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
                   Mero Gunaso is the digital bridge between citizens and government. Report local issues, track investigations, and witness the transformation in real-time.
                 </p>
               </div>
 
               {/* CTA Group */}
-              <div className="flex flex-col sm:flex-row gap-5 items-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <div className="flex flex-col sm:flex-row gap-4 items-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <Link to="/submit">
-                  <Button size="lg" className="h-16 px-10 rounded-2xl text-lg font-bold gap-3 shadow-[0_20px_50px_-15px_rgba(37,99,235,0.4)] hover:shadow-[0_25px_60px_-10px_rgba(37,99,235,0.5)] active:scale-95 transition-all bg-primary">
-                    <MessageSquarePlus className="h-6 w-6" />
+                  <Button size="default" className="h-12 px-6 rounded-xl text-base font-bold gap-2 shadow-[0_10px_30px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_40px_-10px_rgba(37,99,235,0.5)] active:scale-95 transition-all bg-primary">
+                    <MessageSquarePlus className="h-5 w-5" />
                     Submit Complaint
                   </Button>
                 </Link>
                 <Link to="/complaints">
-                  <Button variant="outline" size="lg" className="h-16 px-10 rounded-2xl text-lg font-bold gap-3 bg-white/20 hover:bg-white/40 backdrop-blur-sm transition-all border border-primary/20 hover:border-primary/40 shadow-sm active:scale-95">
-                    <Search className="h-6 w-6 text-primary" />
+                  <Button variant="outline" size="default" className="h-12 px-6 rounded-xl text-base font-bold gap-2 bg-white/20 hover:bg-white/40 backdrop-blur-sm transition-all border border-primary/20 hover:border-primary/40 shadow-sm active:scale-95">
+                    <Search className="h-5 w-5 text-primary" />
                     View Complaints
                   </Button>
                 </Link>
               </div>
 
               {/* Floating Live Stats Pills */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 pt-12 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 pt-12 animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 {[
-                  { label: 'Citizen Reports', value: stats.total, icon: FileText, color: 'text-primary' },
-                  { label: 'In Progress', value: stats.inProgress, icon: Activity, color: 'text-blue-500' },
-                  { label: 'Issues Resolved', value: stats.resolved, icon: CheckCircle, color: 'text-emerald-500' },
+                  { label: 'Citizen Reports', value: stats.total, icon: FileText, color: 'text-primary', bg: 'bg-primary/10' },
+                  { label: 'In Progress', value: stats.inProgress, icon: Activity, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+                  { label: 'Issues Resolved', value: stats.resolved, icon: CheckCircle, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
                 ].map((stat, i) => (
-                  <div key={i} className="glass-pill px-6 py-4 border-white/40 shadow-xl group hover:border-primary/30 transition-colors">
-                    <stat.icon className={cn("h-5 w-5", stat.color)} />
-                    <div className="flex flex-col items-start leading-tight">
-                      <span className="text-xl font-black tabular-nums">{stat.value}</span>
-                      <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">{stat.label}</span>
+                  <div key={i} className={cn("glass-card rounded-2xl p-3 md:p-4 flex items-center gap-2 md:gap-4 group hover:-translate-y-1 transition-transform duration-300", i === 2 ? "col-span-2 md:col-span-1" : "")}>
+                    <div className={cn("h-10 w-10 md:h-12 md:w-12 rounded-xl flex-shrink-0 flex items-center justify-center transition-transform group-hover:scale-110", stat.bg)}>
+                      <stat.icon className={cn("h-4 w-4 md:h-6 md:w-6", stat.color)} />
+                    </div>
+                    <div className="flex flex-col items-start leading-tight min-w-0">
+                      <span className="text-xl md:text-2xl font-black tabular-nums">{stat.value}</span>
+                      <span className="text-[8px] md:text-[10px] font-bold text-muted-foreground uppercase tracking-wider md:tracking-widest mt-0.5 truncate w-full">{stat.label}</span>
                     </div>
                   </div>
                 ))}
@@ -114,13 +116,13 @@ const Index = () => {
         </section>
 
         {/* --- THE PROCESS (Timeline) --- */}
-        <section className="py-24 relative">
+        <section className="pt-12 pb-24 lg:pt-16 lg:pb-24 relative">
           <div className="container max-w-5xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row gap-16 items-start">
               {/* Left Side: Text */}
               <div className="lg:w-1/3 sticky top-32 space-y-4">
                 <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary tracking-widest uppercase font-black text-[10px] px-3 py-1">Workflow</Badge>
-                <h2 className="text-4xl font-black tracking-tight leading-tight">How we <br /><span className="text-primary italic">Resolve</span>.</h2>
+                <h2 className="text-3xl lg:text-4xl font-black tracking-tight leading-tight">How we <br /><span className="text-primary italic">Resolve</span>.</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">We've built a multi-layered verification system to ensure your voice reaches the right desk, every time.</p>
               </div>
 
@@ -155,7 +157,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12 animate-fade-up">
             <div className="space-y-2">
               <div className="flex items-center gap-3">
-                <h2 className="text-4xl font-black tracking-tighter">Live Updates</h2>
+                <h2 className="text-3xl lg:text-4xl font-black tracking-tighter">Live Updates</h2>
               </div>
               <p className="text-sm text-muted-foreground max-w-xl font-medium">
                 The latest reports from active citizens across all departments.
@@ -204,11 +206,11 @@ const Index = () => {
             <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-blue-500/10 blur-[100px] -z-0 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight animate-fade-up">
+              <div className="space-y-3">
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight animate-fade-up">
                   Ready to make an <span className="text-primary">impact?</span>
                 </h2>
-                <p className="text-slate-300/80 text-base max-w-xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: '0.1s' }}>
+                <p className="text-slate-300/80 text-sm max-w-xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: '0.1s' }}>
                   Join thousands of citizens helping local authorities build a more responsive, transparent community for everyone.
                 </p>
               </div>

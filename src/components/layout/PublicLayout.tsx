@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { FileText, Home, LogIn, LayoutDashboard, Send, ShieldCheck, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { FileText, Home, LogIn, LayoutDashboard, Send, ShieldCheck, Instagram, Facebook, Linkedin, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { useAuth } from '@/context/AuthContext';
 
 interface PublicLayoutProps {
@@ -38,7 +39,7 @@ export function PublicLayout({ children }: PublicLayoutProps) {
             </div>
           </Link>
 
-          <nav className="flex items-center gap-1 bg-muted/30 p-1 rounded-2xl border border-border/40">
+          <nav className="hidden md:flex items-center gap-1 bg-muted/30 p-1 rounded-2xl border border-border/40">
             {navItems.map(item => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -53,14 +54,14 @@ export function PublicLayout({ children }: PublicLayoutProps) {
                       }`}
                   >
                     <Icon className={`h-4 w-4 ${isActive ? 'text-primary' : ''}`} />
-                    <span className="hidden md:inline">{item.label}</span>
+                    <span>{item.label}</span>
                   </Button>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             {isAuthenticated && isAdmin ? (
               <Link to="/admin">
                 <Button
@@ -69,7 +70,7 @@ export function PublicLayout({ children }: PublicLayoutProps) {
                   className="gap-2 rounded-xl h-10 px-5 shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-primary/30"
                 >
                   <LayoutDashboard className="h-4 w-4" />
-                  <span>Admin<span className="hidden md:inline"> Dashboard</span></span>
+                  <span>Admin Dashboard</span>
                 </Button>
               </Link>
             ) : (
@@ -77,14 +78,72 @@ export function PublicLayout({ children }: PublicLayoutProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="gap-2 text-muted-foreground hover:text-foreground h-10 px-3 md:px-4 rounded-xl"
+                  className="gap-2 text-muted-foreground hover:text-foreground h-10 px-4 rounded-xl"
                 >
                   <LogIn className="h-4 w-4" />
-                  <span className="hidden md:inline">Sign In</span>
+                  <span>Sign In</span>
                 </Button>
               </Link>
             )}
+          </div>
 
+          {/* Mobile Menu */}
+          <div className="md:hidden flex items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-12 w-12 rounded-xl">
+                  <Menu className="h-7 w-7" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[80vw] sm:w-[350px] flex flex-col pt-12">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <div className="flex flex-col gap-2">
+                  {navItems.map(item => {
+                    const Icon = item.icon;
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <Link key={item.path} to={item.path}>
+                        <Button
+                          variant="ghost"
+                          className={`w-full justify-start gap-3 h-12 rounded-xl transition-all duration-300 ${isActive
+                            ? 'bg-primary/10 text-primary font-bold'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                            }`}
+                        >
+                          <Icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
+                          <span className="text-base">{item.label}</span>
+                        </Button>
+                      </Link>
+                    );
+                  })}
+                </div>
+                
+                <div className="mt-4 border-t pt-4">
+                  {isAuthenticated && isAdmin ? (
+                    <Link to="/admin">
+                      <Button
+                        variant="default"
+                        className="w-full gap-2 rounded-xl h-12 shadow-lg shadow-primary/20"
+                      >
+                        <LayoutDashboard className="h-5 w-5" />
+                        <span>Admin Dashboard</span>
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link to="/login">
+                      <Button
+                        variant="outline"
+                        className="w-full gap-2 h-12 rounded-xl"
+                      >
+                        <LogIn className="h-5 w-5" />
+                        <span>Sign In</span>
+                      </Button>
+                    </Link>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
