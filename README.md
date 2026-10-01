@@ -114,14 +114,16 @@ Used for atomic generation of human-readable Ticket IDs.
 ## 🚀 Platform Features
 
 ### 👤 Citizen Experience
-*   **Public Portal**: An immersive homepage featuring a "Pulse" of community activity and a live resolution timeline.
+*   **Public Portal**: An immersive homepage featuring a "Pulse" of community activity, a live resolution timeline, and a mobile-first swiping drawer navigation.
 *   **Secured Submission**: Multi-step reporting flow with specialized "Identity" and "Report" sections.
 *   **Privacy-First Design**: Citizens can mark reports as **Public** (visible to community) or **Private** (exclusive to authorities).
-*   **Tracking Pulse**: Searchable feed and status tracking using unique, human-readable **Ticket IDs**.
+*   **Premium UI**: Stunning, responsive glassmorphism horizontal cards for live statistics, built for both desktop and mobile clarity.
+*   **Tracking Pulse**: Searchable community dashboard and status tracking using unique, human-readable **Ticket IDs**.
 *   **Interactive Journey**: A scrolling "Resolution Map" explaining the internal government workflow.
 
 ### 👮 Administrative Tools (Admin & Super Admin)
-*   **Dynamic Dashboard**: Real-time "Pill" statistics and visual charts for department-wide performance tracking.
+*   **Secure Admin Portal**: A highly polished, mesh-gradient protected login interface with premium input styling.
+*   **Dynamic Dashboard**: Real-time interactive statistics and visual charts for department-wide performance tracking.
 *   **Complaint Hub**: Server-side paginated management of reports with status updating (Not Opened → In Progress → Resolved).
 *   **Case Notes**: Admins can attach official notes to resolution updates for citizen transparency.
 *   **Audit Logging**: A strictly monitored log of all administrative actions (status changes, edits) to ensure accountability.
