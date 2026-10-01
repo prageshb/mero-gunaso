@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { FileText, Home, LogIn, LayoutDashboard, Send, ShieldCheck } from 'lucide-react';
+import { FileText, Home, LogIn, LayoutDashboard, Send, ShieldCheck, Instagram, Facebook, Linkedin } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 interface PublicLayoutProps {
@@ -93,17 +93,23 @@ export function PublicLayout({ children }: PublicLayoutProps) {
       <main className="flex-1 overflow-x-hidden">{children}</main>
 
       {/* Modern Footer */}
-      <footer className="bg-background border-t border-border/40 py-8 mt-auto">
+      <footer className="bg-[#06122d] py-12 mt-auto text-white">
         <div className="container px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-[10px] text-muted-foreground tracking-widest font-black uppercase">
+          <div className="flex flex-col items-center justify-center gap-5">
+            <div className="flex items-center gap-8">
+              <a href="#" className="text-slate-400 hover:text-white transition-all hover:-translate-y-1" aria-label="Instagram">
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-white transition-all hover:-translate-y-1" aria-label="Facebook">
+                <Facebook className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a href="https://www.linkedin.com/in/prageshbhandari/" className="text-slate-400 hover:text-white transition-all hover:-translate-y-1" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+            </div>
+            <p className="text-[10px] text-slate-500 tracking-widest font-bold uppercase text-center">
               © {new Date().getFullYear()} PRAGESH BHANDARI. ALL RIGHTS RESERVED.
             </p>
-            <div className="flex items-center gap-6 text-[10px] font-black tracking-widest text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-all active:scale-95">TWITTER</a>
-              <a href="#" className="hover:text-primary transition-all active:scale-95">FACEBOOK</a>
-              <a href="https://www.linkedin.com/in/prageshbhandari/" className="hover:text-primary transition-all active:scale-95">LINKEDIN</a>
-            </div>
           </div>
         </div>
       </footer>

@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.70:8080/api';
+const BASE_URL = 'http://localhost:8080/api';
 
 interface FetchOptions extends RequestInit {
   requireAuth?: boolean;
