@@ -1,4 +1,12 @@
-const BASE_URL = 'http://localhost:8080/api';
+const getBaseUrl = () => {
+  if (import.meta.env.VITE_BACKEND_URL) {
+    return `${import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '')}/api`;
+  }
+  return `${window.location.protocol}//${window.location.hostname}:8080/api`;
+};
+
+const BASE_URL = getBaseUrl();
+
 
 interface FetchOptions extends RequestInit {
   requireAuth?: boolean;
